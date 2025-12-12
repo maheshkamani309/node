@@ -1,17 +1,21 @@
-const http      = require('http');
-const express   = require('express');
+const path = require('path');
 
-const app  = express();
+const express = require('express');
+const bodyParser = require('body-parser');
 
-    app.use((req, res, next) => {
-        console.log("First middleware");
-        next();
-    });
+const app = express();
 
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
-    app.use((req, res, next)=>{
-        console.log("Second request");
-        res.send('<h1>This is the testing.</h1>')
-    });
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(3000)
+app.use('/admin', adminRoutes);
+app.use(shopRoutes);
+
+app.use((req, res, next) => {
+    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+});
+
+app.listen(3000);
