@@ -1,0 +1,8 @@
+.card.user-item {
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.card.user-item p {
+    margin: 0 0 15px 0;
+}

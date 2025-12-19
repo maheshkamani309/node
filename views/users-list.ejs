@@ -1,0 +1,24 @@
+<%- include('includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/user.css">
+</head>
+
+<body>
+    <%- include('includes/navigation.ejs') %>
+    <main>
+       <% if (users.length > 0) { %>
+            <div class="grid">
+                <% for (let user of users) { %>
+                    <div class="card user-item">
+                        <div class="user-card">
+                            <p><strong>Name:</strong> <%= user.name %></p>
+                            <p><strong>Email:</strong> <%= user.email %></p>
+                            <p><strong>Phone:</strong> <%= user.phone %></p>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        <% } else { %>
+            <h1>No Users Found!</h1>
+        <% } %>
+    </main>
+<%- include('includes/end.ejs') %>
